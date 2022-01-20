@@ -6,5 +6,6 @@ namespace Business.DTO.ResponseModel.TransactionResponseModel
 {
     class GetTransactionResponseModel
     {
+
     }
 }

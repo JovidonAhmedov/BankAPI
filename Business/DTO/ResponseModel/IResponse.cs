@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.DTO.ReponseModel
+namespace Business.DTO.ResponseModel
 {
     public interface IResponse
     {

@@ -29,7 +29,8 @@ namespace BankAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         { 
-            services.AddDbContext<BankDbContext>(option => option.UseInMemoryDatabase(Configuration.GetConnectionString("BankDb")));
+            services.AddDbContext<BankDbContext>(option => option.UseInMemoryDatabase(
+                Configuration.GetConnectionString("BankDb")));
             services.AddControllers();
 
             services.AddTransient<IRepository<Account>, AccountRepository>();
