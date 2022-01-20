@@ -15,9 +15,13 @@ namespace Data.Models
         public long accountCode { get; set; }
         public long merchant { get; set; }
         public decimal sum { get; set; }
-        
+
         //public byte? paymentstatus { get; set; }
 
-        //public ICollection<Account> Account { get; set; }
+        //[ForeignKey(nameof(Account))]
+        //public long accountId { get; set; }
+        //public Account Account { get; set; }
+
+
     }
 }

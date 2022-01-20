@@ -18,9 +18,6 @@ namespace Data.Models
         public bool? identification { get; set; }
         public long accountCode { get; set; }
 
-
-        //[ForeignKey(nameof(Transactions))]
-        // public int transactionid { get; set; }
-        //public Transaction Transaction { get; set; }
+        //public ICollection<Transaction> Transactions { get; set; }
     }
 }
