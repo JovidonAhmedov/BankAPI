@@ -33,15 +33,15 @@ namespace Business.Services
 
             if (account != null)
             {
-                response = AccountMapper.AccountGetSuccessReponseModel(account);
+                response = AccountMapper.GetSuccessReponseModel(account);
             }
             else if(account is null)
             {
-               response = AccountMapper.AccountGetNotFoundReponseModel(account);
+               response = AccountMapper.GetNotFoundReponseModel(account);
             }
             else
             {
-               response = AccountMapper.AccountGetErrorReponseModel(account);
+               response = AccountMapper.GetErrorReponseModel(account);
             }
                 
             return response;
@@ -54,6 +54,7 @@ namespace Business.Services
             
             try
             {
+                // Validation
                 if (request.msisdn<0)
                 {
                     response = AccountMapper.CreateIncorrectValueMsisdnResponse(request.msisdn);
@@ -64,6 +65,7 @@ namespace Business.Services
                     response = AccountMapper.CreateZeroMsisdnResponse(request.msisdn);
                     return response;
                 }
+                // till here
 
                 var result = repository.getBymsisdn(request.msisdn);
 
@@ -80,7 +82,7 @@ namespace Business.Services
                 return response;
             }
 
-            response = AccountMapper.AccountCreateSuccessReponseModel(account);
+            response = AccountMapper.CreateSuccessReponseModel(account);
             
             return response;
         }

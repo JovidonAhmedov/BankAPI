@@ -1,4 +1,6 @@
-﻿using Data.Models;
+﻿using Business.DTO.RequestModel.TransactionRequestModel;
+using Business.Services;
+using Data.Models;
 using Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,25 +10,31 @@ namespace BankAPI.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        ITransactionRepository repository;
-        public TransactionController(ITransactionRepository repository)
+        ITransactionService _transactionService;
+        public TransactionController(ITransactionService transactionService)
         {
-            this.repository = repository;
+            _transactionService=transactionService;
         }
 
         [HttpPost]
-        public IActionResult createTransaction([FromBody]Transaction transaction)
+        public IActionResult CreateTransaction([FromQuery]CreateTransactionRequestModel transactionModel)
         {
-            // var item = repository.create(transaction);
-            //return Ok(item);
-            return null;
+            var response = _transactionService.CreateTransaction(transactionModel);
+
+            if (response.Result == 1)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest(response);
         }
 
-        [HttpGet("{transactionId}")]
-        public IActionResult getAccount(long transactionId)
+        [HttpGet]
+        public IActionResult GetAccount([FromQuery]GetTransactionRequestModel request)
         {
-            var account = repository.getById(transactionId);
+            var account = _transactionService.GetTransaction(request);
             return Ok(account);
         }
+
     }
 }

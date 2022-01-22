@@ -1,4 +1,5 @@
 ﻿using Business.DTO.RequestModel.AccountRequestModel;
+using Business.DTO.RequestModel.TransactionRequestModel;
 using Business.DTO.ResponseModel;
 using Business.DTO.ResponseModel.AccountResponseModel;
 using Data.Models;
@@ -10,7 +11,7 @@ namespace Business.Mapper
 {
     public  static class AccountMapper
     {
-        internal static GetAccountResponseModel AccountGetSuccessReponseModel(Account account)
+        internal static GetAccountResponseModel GetSuccessReponseModel(Account account)
         {
             var accountDto = new GetAccountResponseModel()
             {
@@ -35,24 +36,36 @@ namespace Business.Mapper
             return accountDto;
         }
 
-        internal static GetErrorResponseModel AccountGetErrorReponseModel(Account account)
+        internal static Response CreateNotExistResponse(long accountCode)
         {
-            var accountDto = new GetErrorResponseModel()
+            var response = new GetErrorResponseModel()
+            {
+                Result = 0,
+                Message = $"Account with AccountCode={accountCode} does not exist."
+            };
+
+
+            return response;
+        }
+
+        internal static GetErrorResponseModel GetErrorReponseModel(Account account)
+        {
+            var response = new GetErrorResponseModel()
             {
                 Result = 0,
                 Message = "error"
             };
-            return accountDto;
+            return response;
         }
 
-        internal static GetErrorResponseModel AccountGetNotFoundReponseModel(Account account)
+        internal static GetErrorResponseModel GetNotFoundReponseModel(Account account)
         {
-            var accountDto = new GetErrorResponseModel()
+            var response = new GetErrorResponseModel()
             {
                 Result = 0,
                 Message = "NotFound"
             };
-            return accountDto;
+            return response;
         }
 
         internal static CreateErrorResponseModel CreateDublicationResponse(long msisdn)
@@ -98,19 +111,19 @@ namespace Business.Mapper
             return response;
         }
 
-        internal static CreateAccountResponseModel AccountCreateSuccessReponseModel(Account account)
+        internal static CreateAccountResponseModel CreateSuccessReponseModel(Account account)
         {
-            CreateAccountResponseModel accountDto = new CreateAccountResponseModel
+            var response = new CreateAccountResponseModel
             {
                 accountCode = account.accountCode,
                 
                 Result = 1,
                 Message = "ok"
             };
-            return accountDto;
+            return response;
         }
 
-        internal static CreateAccountResponseModel AccountCreateErrorReponseModel(Account account)
+        internal static CreateAccountResponseModel CreateErrorReponseModel(Account account)
         {
             CreateAccountResponseModel accountDto = new CreateAccountResponseModel
             {
