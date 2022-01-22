@@ -6,5 +6,6 @@ namespace Business.DTO.RequestModel.TransactionRequestModel
 {
     public class GetTransactionRequestModel
     {
+        public long id { get; set; }
     }
 }

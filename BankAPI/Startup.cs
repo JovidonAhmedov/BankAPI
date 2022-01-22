@@ -33,8 +33,8 @@ namespace BankAPI
                 Configuration.GetConnectionString("BankDb")));
             services.AddControllers();
 
-            services.AddTransient<IRepository<Account>, AccountRepository>();
-            services.AddTransient<IRepository<Transaction>, TransactionRepository>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

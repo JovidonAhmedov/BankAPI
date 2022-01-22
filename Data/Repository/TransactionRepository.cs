@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Data.Repository
 {
-    public class TransactionRepository : IRepository<Transaction>
+    public class TransactionRepository : ITransactionRepository
     {
         private readonly BankDbContext db;
         public TransactionRepository(BankDbContext db)
@@ -22,7 +22,7 @@ namespace Data.Repository
         }
 
 
-        public Transaction get(long id)
+        public Transaction getById(long id)
         {
             return db.Transactions.FirstOrDefault(s=>s.transactionId==id);
         }

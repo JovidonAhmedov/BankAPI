@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Data.Repository
 {
-    public class AccountRepository : IRepository<Account>
+    public class AccountRepository : IAccountRepository
     {
         private readonly BankDbContext db;
         public AccountRepository(BankDbContext db)
@@ -23,10 +23,31 @@ namespace Data.Repository
         }
 
         // get Account by accountCode
-        public Account get(long id)
+        public Account getByaccountCode(long? id)
         {
-            var account = db.Accounts.FirstOrDefault(a => a.accountCode == id);
-            return account;
+            try
+            {
+                var account = db.Accounts.FirstOrDefault(a => a.accountCode == id);
+                return account;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        // get Account by accountCode
+        public Account getBymsisdn(long? id)
+        {
+            try
+            {
+                var account = db.Accounts.FirstOrDefault(a => a.msisdn == id);
+                return account;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
     }

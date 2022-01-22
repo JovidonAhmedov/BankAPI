@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Data.Models;
+﻿using Data.Models;
 using Data.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankAPI.Controllers
@@ -13,8 +8,8 @@ namespace BankAPI.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        IRepository<Account> repository;
-        public AccountController(IRepository<Account> repository)
+        IAccountRepository repository;
+        public AccountController(IAccountRepository repository)
         {
             this.repository = repository;
         }
@@ -29,7 +24,7 @@ namespace BankAPI.Controllers
         [HttpGet("{accountCode}")]
         public IActionResult getAccount(long accountCode)
         {
-            var account = repository.get(accountCode);
+            var account = repository.getByaccountCode(accountCode);
             return Ok(account);
         }
 

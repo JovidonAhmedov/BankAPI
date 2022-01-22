@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Data.Models;
+﻿using Data.Models;
 using Data.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankAPI.Controllers
@@ -13,8 +8,8 @@ namespace BankAPI.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        IRepository<Transaction> repository;
-        public TransactionController(IRepository<Transaction> repository)
+        ITransactionRepository repository;
+        public TransactionController(ITransactionRepository repository)
         {
             this.repository = repository;
         }
@@ -22,14 +17,15 @@ namespace BankAPI.Controllers
         [HttpPost]
         public IActionResult createTransaction([FromBody]Transaction transaction)
         {
-            var item = repository.create(transaction);
-            return Ok(item);
+            // var item = repository.create(transaction);
+            //return Ok(item);
+            return null;
         }
 
         [HttpGet("{transactionId}")]
         public IActionResult getAccount(long transactionId)
         {
-            var account = repository.get(transactionId);
+            var account = repository.getById(transactionId);
             return Ok(account);
         }
     }
