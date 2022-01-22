@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.DTO.ResponseModel.TransactionResponseModel
+namespace Business.DTO.ResponseModel.AccountResponseModel
 {
-    class GetTransactionResponseModel:Response
+    public class GetErrorResponseModel : Response
     {
         public override int Result { get; set; }
         public override string Message { get; set; }
-
-        public long paymentId { get; set; }
     }
 }

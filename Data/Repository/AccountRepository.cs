@@ -17,8 +17,15 @@ namespace Data.Repository
         // add account
         public Account create(Account item)
         {
-            db.Accounts.Add(item);
-            db.SaveChanges();
+            try
+            {
+                db.Accounts.Add(item);
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
             return item;
         }
 

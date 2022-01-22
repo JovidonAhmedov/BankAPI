@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Business.DTO.ResponseModel.AccountResponseModel
 {
-    public class GetAccountResponseModel:IResponse
+    public class GetAccountResponseModel :Response
     {
-        public int result { get; set; }
-        public string message { get; set; }
+        public override int Result { get; set; }
+        public override string Message { get; set; }
 
         public long msisdn { get; set; }
         public decimal? balance { get; set; }

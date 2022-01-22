@@ -1,12 +1,14 @@
 ﻿using Business.DTO.RequestModel.AccountRequestModel;
+using Business.DTO.ResponseModel;
 using Business.DTO.ResponseModel.AccountResponseModel;
 using Business.Mapper;
 using Data.Models;
 using Data.Repository;
+using System;
 
 namespace Business.Services
 {
-    public class AccountService
+    public class AccountService:IAccountService
     {
         private IAccountRepository repository;
         public AccountService(IAccountRepository repository)
@@ -14,65 +16,72 @@ namespace Business.Services
             this.repository = repository;
         }
 
-        public GetAccountResponseModel getAccount(GetAccountRequestModel request)
+        public Response getAccount(GetAccountRequestModel request)
         {
             Account account=null;
-            GetAccountResponseModel accountDto;
-          
-            if (request.msisdn!=null)
+            Response response;            
+            
+            if (request.msisdn!=null&& request.msisdn!=0)
             {
                 account=repository.getBymsisdn(request.msisdn);
             }
-            else if(request.accountCode != null)
+            else if(request.accountCode != null&& request.accountCode!=0)
             {
                 account=repository.getByaccountCode(request.accountCode);
             }
+            
 
             if (account != null)
             {
-                accountDto = AccountMapper.AccountGetSuccessReponseModel(account);
+                response = AccountMapper.AccountGetSuccessReponseModel(account);
             }
             else if(account is null)
             {
-                accountDto = AccountMapper.AccountGetNotFoundReponseModel(account);
+               response = AccountMapper.AccountGetNotFoundReponseModel(account);
             }
             else
             {
-                accountDto = AccountMapper.AccountGetErrorReponseModel(account);
+               response = AccountMapper.AccountGetErrorReponseModel(account);
             }
                 
-            return accountDto;
+            return response;
         }
 
-        public CreateAccountResponseModel createAccount(CreateAccountRequestModel request)
+        public Response createAccount(CreateAccountRequestModel request)
         {
-            CreateAccountResponseModel response=null;
-            Account account = new Account
+            Account account =null;
+            Response response=null;
+            
+            try
             {
-                msisdn = request.msisdn,
-                //accountCode=
-                name = request.name,
-                surname=request.surname,
-            };
+                if (request.msisdn<0)
+                {
+                    response = AccountMapper.CreateIncorrectValueMsisdnResponse(request.msisdn);
+                    return response;
+                }
+                if (request.msisdn == 0)
+                {
+                    response = AccountMapper.CreateZeroMsisdnResponse(request.msisdn);
+                    return response;
+                }
 
-            var acc=repository.create(account);
-            if(acc!=null)
-            {
-                response = new CreateAccountResponseModel
+                var result = repository.getBymsisdn(request.msisdn);
+
+                if(result!=null)
                 {
-                    accountCode=acc.accountCode,
-                    result=1,
-                    message="ok"
-                };
+                    response = AccountMapper.CreateDublicationResponse(request.msisdn);
+                    return response;
+                }    
+                account = repository.create(AccountMapper.CreateReponseModelToAccount(request));
             }
-            else
+            catch(Exception e)
             {
-                response = new CreateAccountResponseModel
-                {
-                    result = 0,
-                    message = "Error"
-                };
-            } 
+                response = AccountMapper.CreateDbExceptionResponse(e.Message);
+                return response;
+            }
+
+            response = AccountMapper.AccountCreateSuccessReponseModel(account);
+            
             return response;
         }
     }

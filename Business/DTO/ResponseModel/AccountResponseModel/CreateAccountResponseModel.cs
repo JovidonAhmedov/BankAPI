@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Business.DTO.ResponseModel.AccountResponseModel
 {
-    public class CreateAccountResponseModel:IResponse
+    public class CreateAccountResponseModel:Response
     {
-        public int result { get; set; }
-        public string message { get; set; }
+        public override int Result { get; set; }
+        public override string Message { get; set; }
 
+        
         public long accountCode { get; set; }
     }
 }

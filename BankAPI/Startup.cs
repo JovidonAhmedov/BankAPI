@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Services;
 using Data;
 using Data.Models;
 using Data.Repository;
@@ -34,6 +35,8 @@ namespace BankAPI
             services.AddControllers();
 
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<IAccountService, AccountService>();
+
             services.AddTransient<ITransactionRepository, TransactionRepository>();
         }
 

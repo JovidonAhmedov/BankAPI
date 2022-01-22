@@ -1,4 +1,6 @@
-﻿using Data.Models;
+﻿using Business.DTO.RequestModel.AccountRequestModel;
+using Business.Services;
+using Data.Models;
 using Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,32 +10,32 @@ namespace BankAPI.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        IAccountRepository repository;
-        public AccountController(IAccountRepository repository)
+        IAccountService _accountService;
+        public AccountController(IAccountService accountService)
         {
-            this.repository = repository;
+            _accountService = accountService;
         }
 
         [HttpPost]
-        public IActionResult createAccount([FromBody]Account account)
+        public IActionResult CreateAccount([FromQuery]CreateAccountRequestModel accountModel)
         {
-            var item = repository.create(account);
-            return Ok(item);
+            var response = _accountService.createAccount(accountModel);
+            
+            if(response.Result==1)
+            {
+                return Ok(response);
+            }
+
+            return BadRequest(response);
         }
 
-        [HttpGet("{accountCode}")]
-        public IActionResult getAccount(long accountCode)
+        [HttpGet]
+        public IActionResult GetAccount([FromQuery]GetAccountRequestModel request)
         {
-            var account = repository.getByaccountCode(accountCode);
+            var account= _accountService.getAccount(request);
             return Ok(account);
         }
 
-        //[HttpGet("{msisdn}")]
-        //public IActionResult getAccount(long id)
-        //{
-        //    var account = repository.get(id);
-        //    return Ok(account);
-        //}
 
     }
 }
