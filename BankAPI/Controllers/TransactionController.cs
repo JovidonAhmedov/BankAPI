@@ -9,7 +9,7 @@ namespace BankAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ApiAuthKey]
+    //[ApiAuthKey]  // We are using ApiAuthKeyMiddleware therefore [ApiAuthKey] in comment
     public class TransactionController : ControllerBase
     {
         ITransactionService _transactionService;

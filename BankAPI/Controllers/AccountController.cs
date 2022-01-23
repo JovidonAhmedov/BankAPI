@@ -9,7 +9,7 @@ namespace BankAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ApiAuthKey]
+    //[ApiAuthKey]  // We can use this attribute or middleware
     public class AccountController : ControllerBase
     {
         IAccountService _accountService;
@@ -36,8 +36,15 @@ namespace BankAPI.Controllers
         [HttpGet]
         public IActionResult GetAccount([FromQuery]GetAccountRequestModel request)
         {
-            var account= _accountService.GetAccount(request);
-            return Ok(account);
+            try
+            {
+                var account = _accountService.GetAccount(request);
+                return Ok(account);
+            }
+            catch
+            {
+                return Ok("result=-1");
+            }
         }
 
 

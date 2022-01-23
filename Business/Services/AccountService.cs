@@ -21,6 +21,7 @@ namespace Business.Services
             Account account=null;
             Response response;            
             
+            // validation
             if (request.msisdn!=null&& request.msisdn!=0)
             {
                 account=repository.GetByMsisdn(request.msisdn);
@@ -29,8 +30,8 @@ namespace Business.Services
             {
                 account=repository.GetByAccountCode(request.accountCode);
             }
-            
 
+            // if account with msisdn or accountCode exist in database
             if (account != null)
             {
                 response = AccountMapper.GetSuccessReponseModel(account);
@@ -70,7 +71,7 @@ namespace Business.Services
                 account = repository.Create(AccountMapper.CreateReponseModelToAccount(request));
             }
             catch(Exception e)
-            {
+            {   
                 response = AccountMapper.CreateDbExceptionResponse(e.Message);
                 return response;
             }

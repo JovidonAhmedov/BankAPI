@@ -1,3 +1,4 @@
+using BankAPI.Security;
 using Business.Services;
 using Data;
 using Data.Repository;
@@ -50,6 +51,8 @@ namespace BankAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<ApiAuthKeyMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

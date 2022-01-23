@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.DTO.ResponseModel;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace BankAPI.Security
@@ -18,11 +20,12 @@ namespace BankAPI.Security
             if (!context.HttpContext.Request.Query.TryGetValue(ApiKeyHeaderName, out var potenKey))
             {
                 context.Result = new UnauthorizedResult();
-                return;
+                return;        
             }
 
             var configuration = context.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
             var apiKey = configuration.GetValue<string>(ApiKeyHeaderName);
+
             if (!apiKey.Equals(potenKey))
             {
                 context.Result = new UnauthorizedResult();
