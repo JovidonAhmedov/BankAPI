@@ -36,7 +36,7 @@ namespace Business.Services
             {
                 response = AccountMapper.GetSuccessReponseModel(account);
             }
-            else if(account is null)
+            else if(account == null)
             {
                response = AccountMapper.GetNotFoundReponseModel(account);
             }

@@ -31,7 +31,7 @@ namespace Business.Services
             {
                 response = TransactionMapper.GetSuccessReponseModel(transaction);
             }
-            else if (transaction is null)
+            else if (transaction == null)
             {
                 response = TransactionMapper.GetNotFoundReponseModel(transaction);
             }
@@ -51,7 +51,7 @@ namespace Business.Services
                 if (request.merchant != 0)
                 {
                     var merchant = _merchantRepository.GetById(request.merchant);
-                    if(merchant is null)
+                    if(merchant == null)
                     {
                         response = TransactionMapper.CreateNotExistMerchantResponse(request.merchant);
                         return response;
