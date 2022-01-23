@@ -11,10 +11,12 @@ namespace Business.Services
     {
         private ITransactionRepository _transactionRepository;
         private IAccountRepository _acountRepository;
-        public TransactionService(ITransactionRepository transactionRepository, IAccountRepository acountRepository)
+        private IMerchantRepository _merchantRepository;
+        public TransactionService(ITransactionRepository transactionRepository, IAccountRepository acountRepository, IMerchantRepository merchantRepository)
         {
             _transactionRepository = transactionRepository;
             _acountRepository = acountRepository;
+            _merchantRepository = merchantRepository;
         }
 
         public Response GetTransaction(GetTransactionRequestModel request)
@@ -45,6 +47,16 @@ namespace Business.Services
             Response response=null;
             Transaction transaction=null;
             try {
+
+                if (request.merchant != 0)
+                {
+                    var merchant = _merchantRepository.GetById(request.merchant);
+                    if(merchant is null)
+                    {
+                        response = TransactionMapper.CreateNotExistMerchantResponse(request.merchant);
+                        return response;
+                    }
+                }
 
                 if (request.accountCode != 0)
                 {

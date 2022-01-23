@@ -31,7 +31,9 @@ namespace BankAPI
 
             services.AddTransient<ITransactionRepository, TransactionRepository>();
             services.AddTransient<ITransactionService,TransactionService>();
-           
+
+            services.AddTransient<IMerchantRepository, MerchantRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

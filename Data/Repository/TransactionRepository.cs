@@ -16,15 +16,33 @@ namespace Data.Repository
 
         public Transaction create(Transaction item)
         {
-            db.Transactions.Add(item);
-            db.SaveChanges();
+            try
+            {
+                db.Transactions.Add(item);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
             return item;
+
         }
 
 
         public Transaction getById(long id)
         {
-            return db.Transactions.FirstOrDefault(s=>s.transactionId==id);
+            try
+            {
+                var transaction= db.Transactions.FirstOrDefault(s => s.transactionId == id);
+                return transaction;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
         }
 
     }

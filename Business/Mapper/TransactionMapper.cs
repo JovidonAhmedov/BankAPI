@@ -61,7 +61,7 @@ namespace Business.Mapper
             var response = new ErrorResponseModel()
             {
                 Result = 3,
-                Message = "Transaction is not found."
+                Message = "Transaction not found."
             };
 
             return response;
@@ -71,10 +71,21 @@ namespace Business.Mapper
         {
             var response = new CreateTransactionResponseModel
             {
-                paymentId = transaction.accountCode,
+                paymentId = transaction.paymentId,
 
                 Result = 1,
                 Message = "ok"
+            };
+
+            return response;
+        }
+
+        internal static Response CreateNotExistMerchantResponse(long merchant)
+        {
+            var response = new ErrorResponseModel()
+            {
+                Result = 4,
+                Message = "Merchant not found."
             };
 
             return response;

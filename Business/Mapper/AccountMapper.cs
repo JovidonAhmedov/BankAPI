@@ -15,6 +15,7 @@ namespace Business.Mapper
         {
             var accountDto = new GetAccountResponseModel()
             {
+                msisdn=account.msisdn,
                 accountCode = account.accountCode,
                 balance = account.balance,
                 name = account.name,

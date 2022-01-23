@@ -37,10 +37,11 @@ namespace Data.Repository
                 var account = db.Accounts.FirstOrDefault(a => a.accountCode == id);
                 return account;
             }
-            catch
+            catch (Exception e)
             {
-                return null;
+                throw new Exception(e.Message);
             }
+     
         }
 
         // get Account by accountCode
@@ -51,9 +52,9 @@ namespace Data.Repository
                 var account = db.Accounts.FirstOrDefault(a => a.msisdn == id);
                 return account;
             }
-            catch
+            catch (Exception e)
             {
-                return null;
+                throw new Exception(e.Message);
             }
         }
 
