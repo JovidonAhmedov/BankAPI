@@ -7,8 +7,8 @@ namespace Data.Repository
 {
     public interface IAccountRepository
     {
-        Account getByaccountCode(long? id);
-        Account getBymsisdn(long? id);
-        Account create(Account item);
+        Account GetByAccountCode(long? id);
+        Account GetByMsisdn(long? id);
+        Account Create(Account item);
     }
 }

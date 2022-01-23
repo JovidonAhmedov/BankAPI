@@ -15,12 +15,12 @@ namespace Business.Mapper
         {
             var accountDto = new GetAccountResponseModel()
             {
-                msisdn=account.msisdn,
-                accountCode = account.accountCode,
-                balance = account.balance,
-                name = account.name,
-                surname = account.surname,
-                identification = account.identification,
+                msisdn=account.Msisdn,
+                accountCode = account.AccountCode,
+                balance = account.Balance,
+                name = account.Name,
+                surname = account.Surname,
+                identification = account.Identification,
                 Result = 1,
                 Message = "ok"
             };
@@ -116,7 +116,7 @@ namespace Business.Mapper
         {
             var response = new CreateAccountResponseModel
             {
-                accountCode = account.accountCode,
+                accountCode = account.AccountCode,
                 
                 Result = 1,
                 Message = "ok"
@@ -138,9 +138,9 @@ namespace Business.Mapper
         {
             Account account = new Account
             {
-                msisdn = request.msisdn,
-                name = request.name,
-                surname = request.surname,
+                Msisdn = request.msisdn,
+                Name = request.name,
+                Surname = request.surname,
             };
             return account;
         }

@@ -17,7 +17,7 @@ namespace Data.Repository
         {
             try
             {
-                var merchant = db.Merchants.FirstOrDefault(m => m.id == id);
+                var merchant = db.Merchants.FirstOrDefault(m => m.Id == id);
                 return merchant;
             }
             catch (Exception e)

@@ -1,4 +1,5 @@
-﻿using Business.DTO.RequestModel.TransactionRequestModel;
+﻿using BankAPI.Security;
+using Business.DTO.RequestModel.TransactionRequestModel;
 using Business.Services;
 using Data.Models;
 using Data.Repository;
@@ -8,6 +9,7 @@ namespace BankAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiAuthKey]
     public class TransactionController : ControllerBase
     {
         ITransactionService _transactionService;
@@ -16,6 +18,7 @@ namespace BankAPI.Controllers
             _transactionService=transactionService;
         }
 
+        [Route("createTransaction/")]
         [HttpPost]
         public IActionResult CreateTransaction([FromQuery]CreateTransactionRequestModel transactionModel)
         {
@@ -29,8 +32,9 @@ namespace BankAPI.Controllers
             return BadRequest(response);
         }
 
+        [Route("checkTransaction/")]
         [HttpGet]
-        public IActionResult GetAccount([FromQuery]GetTransactionRequestModel request)
+        public IActionResult GetTransaction([FromQuery]GetTransactionRequestModel request)
         {
             var account = _transactionService.GetTransaction(request);
             return Ok(account);

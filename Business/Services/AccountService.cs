@@ -16,18 +16,18 @@ namespace Business.Services
             this.repository = repository;
         }
 
-        public Response getAccount(GetAccountRequestModel request)
+        public Response GetAccount(GetAccountRequestModel request)
         {
             Account account=null;
             Response response;            
             
             if (request.msisdn!=null&& request.msisdn!=0)
             {
-                account=repository.getBymsisdn(request.msisdn);
+                account=repository.GetByMsisdn(request.msisdn);
             }
             else if(request.accountCode != null&& request.accountCode!=0)
             {
-                account=repository.getByaccountCode(request.accountCode);
+                account=repository.GetByAccountCode(request.accountCode);
             }
             
 
@@ -47,34 +47,27 @@ namespace Business.Services
             return response;
         }
 
-        public Response createAccount(CreateAccountRequestModel request)
+        public Response CreateAccount(CreateAccountRequestModel request)
         {
             Account account =null;
             Response response=null;
             
             try
-            {
-                // Validation
-                if (request.msisdn<0)
-                {
-                    response = AccountMapper.CreateIncorrectValueMsisdnResponse(request.msisdn);
-                    return response;
-                }
+            {               
                 if (request.msisdn == 0)
                 {
                     response = AccountMapper.CreateZeroMsisdnResponse(request.msisdn);
                     return response;
                 }
-                // till here
 
-                var result = repository.getBymsisdn(request.msisdn);
+                var result = repository.GetByMsisdn(request.msisdn);
 
                 if(result!=null)
                 {
                     response = AccountMapper.CreateDublicationResponse(request.msisdn);
                     return response;
                 }    
-                account = repository.create(AccountMapper.CreateReponseModelToAccount(request));
+                account = repository.Create(AccountMapper.CreateReponseModelToAccount(request));
             }
             catch(Exception e)
             {

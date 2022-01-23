@@ -15,7 +15,7 @@ namespace Data.Repository
         }
 
         // add account
-        public Account create(Account item)
+        public Account Create(Account item)
         {
             try
             {
@@ -30,11 +30,11 @@ namespace Data.Repository
         }
 
         // get Account by accountCode
-        public Account getByaccountCode(long? id)
+        public Account GetByAccountCode(long? id)
         {
             try
             {
-                var account = db.Accounts.FirstOrDefault(a => a.accountCode == id);
+                var account = db.Accounts.FirstOrDefault(a => a.AccountCode == id);
                 return account;
             }
             catch (Exception e)
@@ -45,11 +45,11 @@ namespace Data.Repository
         }
 
         // get Account by accountCode
-        public Account getBymsisdn(long? id)
+        public Account GetByMsisdn(long? id)
         {
             try
             {
-                var account = db.Accounts.FirstOrDefault(a => a.msisdn == id);
+                var account = db.Accounts.FirstOrDefault(a => a.Msisdn == id);
                 return account;
             }
             catch (Exception e)

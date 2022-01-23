@@ -14,19 +14,19 @@ namespace Data
                 context.Accounts.AddRange(
                     new Models.Account
                     {
-                        balance = 0,
-                        name = "Ali",
-                        surname = "Aliev",
-                        msisdn = 1,
-                        identification = false
+                        Balance = 0,
+                        Name = "Ali",
+                        Surname = "Aliev",
+                        Msisdn = 1,
+                        Identification = false
                     },
                     new Models.Account
                     {
-                        balance = 0,
-                        name = "Vali",
-                        surname = "Valiev",
-                        msisdn = 2,
-                        identification = false
+                        Balance = 0,
+                        Name = "Vali",
+                        Surname = "Valiev",
+                        Msisdn = 2,
+                        Identification = false
                     });
                     
             }
@@ -36,15 +36,15 @@ namespace Data
                 context.Merchants.AddRange(
                     new Models.Merchant
                     {    
-                        name = "Merchant1"         
+                        Name = "Merchant1"         
                     },
                     new Models.Merchant
                     {
-                        name = "Merchant2"
+                        Name = "Merchant2"
                     },
                     new Models.Merchant
                     {
-                        name = "Merchant3"
+                        Name = "Merchant3"
                     });
    
             }
@@ -54,24 +54,24 @@ namespace Data
                 context.Transactions.AddRange(
                     new Models.Transaction
                     {
-                         transactionId=1,
-                         merchant=2,
-                         sum=200,
-                         accountCode=2
+                         TransactionId=1,
+                         Merchant=2,
+                         Sum=200,
+                         AccountCode=2
                     },
                     new Models.Transaction
                     {
-                        transactionId = 2,
-                        merchant = 3,
-                        sum = 300,
-                        accountCode = 2
+                        TransactionId = 2,
+                        Merchant = 3,
+                        Sum = 300,
+                        AccountCode = 2
                     },
                     new Models.Transaction
                     {
-                        transactionId = 3,
-                        merchant = 3,
-                        sum = 300,
-                        accountCode = 1
+                        TransactionId = 3,
+                        Merchant = 3,
+                        Sum = 300,
+                        AccountCode = 1
                     }
                     );
             }

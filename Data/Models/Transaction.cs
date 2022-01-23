@@ -10,13 +10,14 @@ namespace Data.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long paymentId { get; set; }
-        public long transactionId { get; set; }
-        public long merchant { get; set; }
-        public decimal sum { get; set; }
+        public long PaymentId { get; set; }
+        public long TransactionId { get; set; }
+        public long Merchant { get; set; }
+        public decimal Sum { get; set; }
 
         //[ForeignKey(nameof(Account))]
-        public long accountCode { get; set; }
+        public long AccountCode { get; set; }
+
         //public Account Account { get; set; }
 
     }

@@ -14,17 +14,16 @@ namespace Business.Mapper
         {
             Transaction transaction = new Transaction
             {
-                transactionId = request.transactionId,
-                accountCode = request.accountCode,
-                sum = request.sum,
-                merchant = request.merchant
+                TransactionId = request.transactionId,
+                AccountCode = request.accountCode,
+                Sum = request.sum,
+                Merchant = request.merchant
 
             };
 
             return transaction;
         }
 
-        
         internal static Response CreateDbExceptionResponse(string message)
         {
             var response = new ErrorResponseModel()
@@ -71,8 +70,7 @@ namespace Business.Mapper
         {
             var response = new CreateTransactionResponseModel
             {
-                paymentId = transaction.paymentId,
-
+                paymentId = transaction.PaymentId,
                 Result = 1,
                 Message = "ok"
             };
@@ -95,7 +93,7 @@ namespace Business.Mapper
         {
             var transactionDto = new GetTransactionResponseModel()
             {
-                paymentId=transaction.paymentId,
+                paymentId=transaction.PaymentId,
                 Result = 1,
                 Message = "ok"
             };

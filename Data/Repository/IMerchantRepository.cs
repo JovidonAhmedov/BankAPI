@@ -6,6 +6,6 @@ namespace Data.Repository
     {
         Merchant GetById(long id);
 
-        //Merchant create(Merchant item);
+        //Merchant Create(Merchant item);
     }
 }

@@ -9,7 +9,7 @@ namespace Business.Services
 {
     public interface IAccountService
     {
-        Response getAccount(GetAccountRequestModel request);
-        Response createAccount(CreateAccountRequestModel request);
+        Response GetAccount(GetAccountRequestModel request);
+        Response CreateAccount(CreateAccountRequestModel request);
     }
 }

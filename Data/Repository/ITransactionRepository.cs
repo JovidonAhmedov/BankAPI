@@ -7,7 +7,7 @@ namespace Data.Repository
 {
     public interface ITransactionRepository
     {
-        Transaction getById(long id);
-        Transaction create(Transaction item);
+        Transaction GetById(long id);
+        Transaction Create(Transaction item);
     }
 }

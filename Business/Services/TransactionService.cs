@@ -24,7 +24,7 @@ namespace Business.Services
             Transaction transaction = null;
             Response response;
 
-            transaction = _transactionRepository.getById(request.transactionId);
+            transaction = _transactionRepository.GetById(request.transactionId);
 
             
             if (transaction != null)
@@ -60,21 +60,21 @@ namespace Business.Services
 
                 if (request.accountCode != 0)
                 {
-                    var account = _acountRepository.getByaccountCode(request.accountCode);
+                    var account = _acountRepository.GetByAccountCode(request.accountCode);
                     if (account is null)
                     {
                         response = AccountMapper.CreateNotExistResponse(request.accountCode);
                         return response;
                     }
 
-                    var result = _transactionRepository.getById(request.transactionId);
+                    var result = _transactionRepository.GetById(request.transactionId);
 
                     if (result != null)
                     {
                         response = TransactionMapper.CreateDublicationResponse(request.transactionId);
                         return response;
                     }
-                    transaction = _transactionRepository.create(TransactionMapper.CreateReponseModelToTransaction(request));
+                    transaction = _transactionRepository.Create(TransactionMapper.CreateReponseModelToTransaction(request));
 
                 }
             }

@@ -8,12 +8,12 @@ namespace Data.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long accountCode { get; set; }
-        public long msisdn { get; set; }
-        public decimal balance { get; set; }
-        public string name { get; set; }
-        public string surname { get; set; }
-        public bool? identification { get; set; }
+        public long AccountCode { get; set; }
+        public long Msisdn { get; set; }
+        public decimal Balance { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public bool? Identification { get; set; }
 
         public ICollection<Transaction> Transactions { get; set; }
     }

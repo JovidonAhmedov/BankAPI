@@ -14,7 +14,7 @@ namespace Data.Repository
             this.db = db;
         }
 
-        public Transaction create(Transaction item)
+        public Transaction Create(Transaction item)
         {
             try
             {
@@ -31,11 +31,11 @@ namespace Data.Repository
         }
 
 
-        public Transaction getById(long id)
+        public Transaction GetById(long id)
         {
             try
             {
-                var transaction= db.Transactions.FirstOrDefault(s => s.transactionId == id);
+                var transaction= db.Transactions.FirstOrDefault(s => s.TransactionId == id);
                 return transaction;
             }
             catch (Exception e)
